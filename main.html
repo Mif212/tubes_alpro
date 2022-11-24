@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<title>
+
+    Pyscript : Show Table in Browser
+    
+</title>
+
+ <!-- Pyscript -->
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <!--<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="df_style.css"/>-->
+    
+    <link rel="stylesheet" type="text/css" href="df_style.css"/>
+
+<!---pyodide--> 
+
+<py-env>
+    - pandas
+    - prettytable
+</py-env>
+
+</head>
+
+<body>
+    
+   <center> <b>Top 2000 Universities of the World</b></center>	
+
+  
+    <a href="kedua.html">ddd</a>
+    <py-script>
+
+        import pandas as pd 
+        from prettytable import PrettyTable
+        from pyodide.http import open_url
+
+        url = open_url("https://raw.githubusercontent.com/Mif212/Struktur_Data/main/Top%202000%20Universities%20of%20the%20World%20-%20Sheet1.csv")
+
+        data = pd.read_csv(url)
+        data.drop(["National Rank", "Quality of Education Rank", "Alumni Employment Rank", "Quality of Faculty Rank", "Research Performance Rank"], axis=1, inplace=True)
+        pyscript.write('data',data.to_html(classes="mystyle"))
+
+    </py-script>
+
+    
+</body>
+    <p id="data"></p>
+</html>
